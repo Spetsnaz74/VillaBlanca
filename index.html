@@ -20,37 +20,22 @@
 
         /* Header solo con imagen */
         .header {
-            position: relative;
+            width: 100%;
+            height: 300px;
             background-image: url('caibarien.jpg');
             background-size: cover;
             background-position: center;
-            height: 300px;
         }
 
-        /* Bloque de bienvenida sobre header */
-        .bienvenida-header {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px 30px;
-            border-radius: 12px;
+        /* Bienvenido debajo del header */
+        .bienvenida {
             text-align: center;
-            max-width: 90%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
         }
 
-        .bienvenida-header h1 {
+        .bienvenida h1 {
             font-size: 32px;
             color: #e74c3c;
-            margin-bottom: 10px;
-        }
-
-        .bienvenida-header p {
-            font-size: 16px;
-            color: #333;
-            margin: 0;
         }
 
         /* Contenedor de productos */
@@ -82,8 +67,9 @@
         .producto img {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain; /* Cambiado para que se vea toda la imagen */
             transition: transform 0.3s;
+            background-color: #f4f4f4;
         }
 
         .producto img:hover {
@@ -101,7 +87,6 @@
             margin-bottom: 12px;
         }
 
-        /* Botón WhatsApp dentro del producto */
         .btn-whatsapp {
             background-color: #25D366;
             color: #fff;
@@ -118,7 +103,6 @@
             background-color: #1ebe57;
         }
 
-        /* Botón flotante WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 25px;
@@ -134,23 +118,20 @@
         }
 
         @media(max-width: 600px) {
-            .bienvenida-header h1 {
+            .bienvenida h1 {
                 font-size: 24px;
-            }
-            .bienvenida-header p {
-                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header con bienvenida sobre la imagen -->
-    <header class="header">
-        <div class="bienvenida-header">
-            <h1>Bienvenido</h1>
-            <p>Lo mejor de Caibarién directo a tu WhatsApp. Descubre nuestros productos y haz tu pedido de manera rápida y segura.</p>
-        </div>
-    </header>
+    <!-- Header solo con imagen -->
+    <header class="header"></header>
+
+    <!-- Bienvenida debajo del header -->
+    <div class="bienvenida">
+        <h1>Bienvenido</h1>
+    </div>
 
     <!-- Productos -->
     <section class="productos">
