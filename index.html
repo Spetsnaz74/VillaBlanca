@@ -28,7 +28,7 @@ body {
     margin: 25px 0;
 }
 .bienvenida h1 {
-    font-size: 50px; /* tamaño grande pero no exagerado */
+    font-size: 50px; /* tamaño grande pero proporcionado */
     color: #ff6f61;
     font-weight: bold;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
@@ -75,7 +75,7 @@ body {
 .img-container img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Imagen completa dentro de la cuadricula */
+    object-fit: contain; /* La imagen se ve completa dentro de la cuadricula */
     transition: transform 0.3s;
 }
 
@@ -87,7 +87,13 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #e74c3c;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+}
+.descripcion {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0 10px 0;
+    line-height: 1.4;
 }
 
 /* Botón WhatsApp */
@@ -130,57 +136,76 @@ body {
 </div>
 
 <section class="productos">
+
+    <!-- Producto 1 -->
     <div class="producto">
         <div class="img-container">
             <img src="imagen1.png" alt="Producto 1">
         </div>
         <div class="info-producto">
             <div class="precio">$200(cup)</div>
+            <p class="descripcion">Cable adaptador divisor de corriente LP4 (Molex de 4 pines) a doble SATA.</p>
             <a class="btn-whatsapp" href="https://wa.me/5359056442?text=Hola,%20quiero%20comprar%20el%20Producto%201" target="_blank">Comprar</a>
         </div>
     </div>
 
+    <!-- Producto 2 -->
     <div class="producto">
         <div class="img-container">
             <img src="imagen2.png" alt="Producto 2">
         </div>
         <div class="info-producto">
             <div class="precio">$200(cup)</div>
+            <p class="descripcion">Cable SATA III de 16 pulgadas, ángulo recto y recto, compatible con HDD y SSD (6.0 Gbps SATA III, 1 unidad).</p>
             <a class="btn-whatsapp" href="https://wa.me/5359056442?text=Hola,%20quiero%20comprar%20el%20Producto%202" target="_blank">Comprar</a>
         </div>
     </div>
 
+    <!-- Producto 3 -->
     <div class="producto">
         <div class="img-container">
             <img src="imagen3.png" alt="Producto 3">
         </div>
         <div class="info-producto">
             <div class="precio">$850(cup)</div>
+            <p class="descripcion">Cable HDMI de alta velocidad compatible con 4K, Ultra HD, 3D, 1080p, Ethernet y retorno de audio.</p>
             <a class="btn-whatsapp" href="https://wa.me/5359056442?text=Hola,%20quiero%20comprar%20el%20Producto%203" target="_blank">Comprar</a>
         </div>
     </div>
 
+    <!-- Producto 4 -->
     <div class="producto">
         <div class="img-container">
             <img src="imagen4.png" alt="Producto 4">
         </div>
         <div class="info-producto">
             <div class="precio">$600(cup)</div>
+            <p class="descripcion">Mouse Gaming con Luces Led de distintos colores.</p>
             <a class="btn-whatsapp" href="https://wa.me/5359056442?text=Hola,%20quiero%20comprar%20el%20Producto%204" target="_blank">Comprar</a>
         </div>
     </div>
 
+    <!-- Producto 5 -->
     <div class="producto">
         <div class="img-container">
             <img src="imagen5.png" alt="Producto 5">
         </div>
         <div class="info-producto">
             <div class="precio">$2000(cup)</div>
+            <p class="descripcion">
+                Estación de carga 4 en 1 para múltiples dispositivos Apple. 
+                Carga simultáneamente un iPhone, Apple Watch, AirPods y otro dispositivo Tipo-C. 
+                Incluye un puerto de salida USB-A integrado con un cable de carga 2 en 1 (iPhone y USB-C). 
+                Diseño compacto que ayuda a reducir el desorden de cables. 
+                Compatible con todos los modelos de iWatch, AirPods, iPhones y teléfonos Android con puertos Tipo-C.
+            </p>
             <a class="btn-whatsapp" href="https://wa.me/5359056442?text=Hola,%20quiero%20comprar%20el%20Producto%205" target="_blank">Comprar</a>
         </div>
     </div>
+
 </section>
 
+<!-- Botón flotante WhatsApp -->
 <a href="https://wa.me/5359056442?text=Hola,%20quiero%20consultar%20sobre%20sus%20productos" target="_blank" class="whatsapp-float">
     <img src="whatsapp-logo.png" alt="WhatsApp">
 </a>
