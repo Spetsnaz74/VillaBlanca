@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ofertas en Remedios🛒🔥</title>
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background:#111;
+    color:white;
+}
+
+h1{
+    text-align:center;
+    padding:40px 0;
+    background: url("Ventas.jpg") center/cover no-repeat;
+    color:white;
+    text-shadow:2px 2px 4px #000;
+}
+
+.filters{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:10px;
+}
+
+.filters button{
+    padding:8px 12px;
+    border:none;
+    border-radius:5px;
+    background:#333;
+    color:white;
+    cursor:pointer;
+}
+
+.filters button.active{
+    background:green;
+}
+
+.filters button:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+}
+
+.search{
+    display:flex;
+    justify-content:center;
+    padding:10px;
+}
+
+.search input{
+    padding:8px;
+    width:200px;
+    border-radius:5px;
+    border:none;
+}
+
+/* PRODUCTOS */
+.productos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.producto {
+    background:#222;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    overflow:hidden;
+}
+
+.producto img {
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:5px;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.producto:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+}
+
+/* BOTÓN WHATSAPP */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: background 0.3s;
+}
+
+.btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn:hover {
+    background: #128C7E;
+}
+
+/* ADMIN */
+#adminPanel{
+    display:none;
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:#000000ee;
+    z-index:9999;
+    padding:20px;
+    overflow:auto;
+}
+
+input{width:100%;padding:8px;margin:5px 0;}
+button{padding:8px;margin:5px;}
+</style>
+</head>
+<body>
+
+<h1>Ofertas en Remedios🛒🔥</h1>
+
+<div class="search">
+    <input type="text" id="buscador" placeholder="Buscar producto..." onkeyup="applyFilters()">
+</div>
+
+<div class="filters" id="categoryButtons"></div>
+
+<div class="productos" id="lista"></div>
+
+<div id="adminPanel">
+<h2>Panel Admin</h2>
+
+<input id="name" placeholder="Nombre">
+<input id="price" placeholder="Precio">
+<input id="img" placeholder="Imagen URL">
+<input id="cat" placeholder="Categoría">
+<input id="wa" placeholder="WhatsApp">
+
+<button onclick="add()">Guardar</button>
+
+<hr>
+
+<div id="adminList"></div>
+
+<hr>
+
+<button onclick="exportData()">Exportar</button>
+<input type="file" onchange="importData(event)">
+
+<br><br>
+<button onclick="toggleAdmin()">Cerrar</button>
+</div>
+
+<script>
+let isAdmin = false; 
+let editId = null;
+let currentCategory = "all";
+
+let productos = JSON.parse(localStorage.getItem("productos")) || [
+{ id:1,name:"Cable adaptador Molex a doble SATA",price:300,img:"imagen1.png",cat:"Ferreteria",wa:"5359056442"},
+{ id:2,name:"Cable SATA III de 16 pulgadas",price:300,img:"imagen2.png",cat:"Ferreteria",wa:"5359056442"},
+{ id:3,name:"Candado Mediano",price:800,img:"F1.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:4,name:"Candado de Bicicleta",price:2500,img:"F2.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:5,name:"llavin de Puerta",price:5000,img:"F3.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:6,name:"llavin de Puerta 2",price:4000,img:"F4.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:7,name:"Bomba Mediana de Aluminio",price:3700,img:"F5.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:8,name:"Bomba Grande de Aluminio",price:6000,img:"F6.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:9,name:"Soporte de TV 14-42",price:5000,img:"F7.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:10,name:"Soporte de TV 14-55",price:10.000,img:"F8.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:11,name:"Soporte de TV 26-55",price:9000,img:"F9.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:12,name:"Gomas de Bicicleta",price:7000,img:"F10.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:13,name:"Sillin de Bicicleta",price:7000,img:"F11.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:14,name:"Tubo Led",price:1200,img:"F12.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:15,name:"Carcasa Tubo Led",price:1200,img:"F13.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:16,name:"Calentador de Agua",price:2000,img:"F14.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:17,name:"Hornilla Electrica",price:3000,img:"F15.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:18,name:"Cable de Alimentacion",price:2000,img:"F16.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:19,name:"Silicona Transparente",price:2500,img:"F17.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:20,name:"Cemento Junteador",price:1800,img:"F18.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:21,name:"Cordel para tendedera",price:300,img:"F19.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:22,name:"Pintura en Spray",price:1800,img:"F20.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:23,name:"Junta de Olla",price:1800,img:"F21.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:24,name:"Cabo de Olla de Induccion",price:2700,img:"F22.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:25,name:"Coladores",price:"700-1200",img:"F23.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:26,name:"Control Remoto Universal KT1440",price:3000,img:"F24.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:27,name:"Colgador de Ropa",price:9000,img:"F25.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:28,name:"Palo de Carteras",price:10000,img:"F26.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:29,name:"Capacitador 20 Micro",price:2000,img:"F27.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:30,name:"Capacitador 30 Micro",price:2500,img:"F27.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:31,name:"Fosforera",price:150,img:"F28.jpg",cat:"Ferreteria",wa:"5359056442"},
+{ id:32,name:"Estropajo de Aluminio",price:160,img:"F29.jpg",cat:"Ferreteria",wa:"5359056442"}
+];
+
+const allCategories = ["Inicio","Cocina","Ferreteria","Hogar","Ropa","Juguetes"];
+function generateCategoryButtons(){
+    const container = document.getElementById("categoryButtons");
+    const existingCats = [...new Set(productos.map(p=>p.cat))].map(c=>c.toLowerCase());
+    allCategories.forEach(cat=>{
+        const btn = document.createElement("button");
+        btn.textContent = cat;
+        btn.onclick = ()=>filterCategory(cat);
+        if(cat.toLowerCase()!=="all" && !existingCats.includes(cat.toLowerCase()) && cat.toLowerCase()!=="ferreteria"){
+            btn.disabled = true;
+        }
+        if(cat.toLowerCase()==="all") btn.classList.add("active");
+        container.appendChild(btn);
+    });
+}
+generateCategoryButtons();
+
+function render(data){
+    let cont = document.getElementById("lista");
+    cont.innerHTML = data.map(p=>`
+    <div class="producto">
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <p>${p.price} CUP</p>
+        <small>${p.cat}</small><br>
+        <a class="btn" href="https://wa.me/${p.wa}?text=Quiero comprar ${encodeURIComponent(p.name)}"><img src="whatsapp.png"> Comprar</a>
+    </div>
+    `).join("");
+}
+
+function applyFilters(){
+    const search = document.getElementById("buscador").value.toLowerCase();
+    let filtered = productos.filter(p=>{
+        const matchCat = currentCategory==="all" || p.cat.toLowerCase() === currentCategory.toLowerCase();
+        const matchSearch = p.name.toLowerCase().includes(search);
+        return matchCat && matchSearch;
+    });
+    render(filtered);
+}
+
+function filterCategory(cat){
+    currentCategory = cat;
+    document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+    document.querySelector(`.filters button[onclick="filterCategory('${cat}')"]`).classList.add("active");
+    applyFilters();
+}
+
+// ADMIN OCULTO
+document.addEventListener("keydown", e=>{
+    if(e.shiftKey && e.altKey && e.key.toLowerCase()=="a"){
+        isAdmin=!isAdmin;
+        toggleAdmin();
+    }
+});
+
+function toggleAdmin(){
+    let p = document.getElementById("adminPanel");
+    p.style.display = isAdmin?"block":"none";
+    renderAdmin();
+}
+
+function save(){localStorage.setItem("productos",JSON.stringify(productos));}
+
+function add(){
+    let n=name.value.trim(),pr=price.value.trim(),im=img.value.trim(),ca=cat.value.trim(),w=wa.value.trim();
+    if(!n||!pr||!im||!ca||!w) return alert("Completa todo");
+    if(editId){
+        let p=productos.find(x=>x.id===editId);
+        Object.assign(p,{name:n,price:pr,img:im,cat:ca,wa:w});
+        editId=null;
+    }else{productos.push({id:Date.now(),name:n,price:pr,img:im,cat:ca,wa:w});}
+    save(); applyFilters(); renderAdmin();
+    name.value=price.value=img.value=cat.value=wa.value="";
+}
+
+function renderAdmin(){
+    adminList.innerHTML = productos.map(p=>`
+    <div>${p.name} - ${p.price} 
+        <button onclick="edit(${p.id})">Editar</button>
+        <button onclick="del(${p.id})">X</button>
+    </div>`).join("");
+}
+
+function edit(id){
+    let p=productos.find(x=>x.id===id);
+    name.value=p.name; price.value=p.price; img.value=p.img; cat.value=p.cat; wa.value=p.wa; editId=id;
+}
+
+function del(id){
+    if(!confirm("Eliminar?")) return;
+    productos=productos.filter(p=>p.id!==id); save(); applyFilters(); renderAdmin();
+}
+
+function exportData(){
+    let data=JSON.stringify(productos); let a=document.createElement("a");
+    a.href=URL.createObjectURL(new Blob([data])); a.download="productos.json"; a.click();
+}
+
+function importData(e){
+    let file=e.target.files[0]; let r=new FileReader();
+    r.onload=()=>{productos=JSON.parse(r.result); save(); applyFilters(); renderAdmin();}
+    r.readAsText(file);
+}
+
+applyFilters();
+</script>
+
+</body>
+</html>
