@@ -3,22 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ofertas en Remedios🛒🔥</title>
+<title>Ofertas en Remedios 🛒🔥</title>
 
-<!-- 🔥 FUENTE INTER PROFESIONAL -->
+<!-- FUENTE INTER PROFESIONAL -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 
-<!-- ✅ PWA - PARA CONVERTIR EN APP INSTALABLE -->
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="OfertasRM">
-<link rel="apple-touch-icon" href="icon-192.png">
-
-<!-- ✅ EVITAR CACHÉ (SIEMPRE VER PRODUCTOS NUEVOS) -->
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+<!-- SIN NADA DE PWA: SIN manifest, SIN apple-meta, SIN iconos, SIN service worker -->
 
 <style>
 *{
@@ -196,6 +186,17 @@ h1{
     mix-blend-mode: screen;
 }
 
+.mensaje-vacio{
+    text-align:center;
+    padding:60px 20px;
+    color:#888;
+    font-size: 18px;
+    background:#1a1a1a;
+    border-radius:20px;
+    margin:20px;
+    font-weight: 500;
+}
+
 @media (max-width: 480px){
     .productos{
         gap:12px;
@@ -207,10 +208,13 @@ h1{
     .producto p{
         font-size: 18px;
     }
+    .mensaje-vacio{
+        font-size: 16px;
+        padding:40px 15px;
+    }
 }
 </style>
 </head>
-
 <body>
 
 <h1>🛒 Ofertas en Remedios 🔥</h1>
@@ -223,147 +227,187 @@ h1{
 <div class="productos" id="lista"></div>
 
 <script>
+// =============================================
+// CATEGORÍAS COMPLETAS: Todos, Ferreteria, Electrónica, Cocina, Hogar, Ropa, Juguetes
+// =============================================
 
 let currentCategory = "Todos";
 
+// ---------- PRODUCTOS ----------
 let productos = [
-// =============================================
-// 🟢 ELECTRÓNICA
-// =============================================
-{ name:"Cable adaptador Molex a SATA", price:300, img:"imagen1.png", cat:"Electrónica", wa:"5359056442"},
-{ name:"Cable SATA III", price:300, img:"imagen2.png", cat:"Electrónica", wa:"5359056442"},
+    // 🟢 ELECTRÓNICA (contenido original)
+    { name:"Cable adaptador Molex a SATA", price:"300", img:"imagen1.png", cat:"Electrónica", wa:"5359056442"},
+    { name:"Cable SATA III", price:"300", img:"imagen2.png", cat:"Electrónica", wa:"5359056442"},
 
-// =============================================
-// 🔧 FERRETERIA
-// =============================================
-{ name:"Candado Mediano", price:800, img:"F1.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Candado Bicicleta", price:2500, img:"F2.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Llave de Puerta", price:5000, img:"F3.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Llave de Puerta 2", price:4000, img:"F4.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Bomba Mediana", price:3700, img:"F5.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Bomba Grande", price:6000, img:"F6.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Soporte TV 14-42", price:5000, img:"F7.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Soporte TV 14-55", price:10000, img:"F8.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Soporte TV 26-55", price:9000, img:"F9.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Gomas Bicicleta", price:7000, img:"F10.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Sillín Bicicleta", price:7000, img:"F11.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Tubo LED", price:1200, img:"F12.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Carcasa Tubo LED", price:1200, img:"F13.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Calentador de Agua", price:2000, img:"F14.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Hornilla Eléctrica", price:3000, img:"F15.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cable Alimentación", price:2000, img:"F16.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Silicona Transparente", price:2500, img:"F17.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cemento Junteador", price:1800, img:"F18.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cordel Tendedera", price:300, img:"F19.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Pintura Spray", price:1800, img:"F20.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Junta Olla", price:1800, img:"F21.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cabo Olla Inducción", price:2700, img:"F22.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Coladores", price:"700-1200", img:"F23.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Control KT1440", price:3000, img:"F24.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Colgador Ropa", price:9000, img:"F25.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Palo Carteras", price:10000, img:"F26.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Capacitador 20uF", price:2000, img:"F27.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Capacitador 30uF", price:2500, img:"F27.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Fosforera", price:150, img:"F28.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Estropajo Aluminio", price:160, img:"F29.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Pistola de Silicona", price:2500, img:"F30.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cautín", price:2500, img:"F31.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Extensiones", price:4500, img:"F32.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Extensión 5m", price:5500, img:"F33.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Extensión 30m", price:8000, img:"F34.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Protector Voltaje", price:4500, img:"F35.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Conectores MC4", price:1600, img:"F36.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cable Fotovoltaico", price:"1600/m", img:"F37.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 25A", price:10000, img:"F38.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 32A", price:1500, img:"F39.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 40A", price:2500, img:"F40.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 63A", price:2500, img:"F41.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Caja 9TM", price:4500, img:"F42.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Caja 13TM", price:6000, img:"F43.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Mochila Regar", price:26000, img:"F44.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Fregadero Aluminio", price:15000, img:"F45.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Remachadora", price:3500, img:"F46.jpg", cat:"Ferreteria", wa:"5359056442"},
+    // 🔧 FERRETERIA (contenido original completo)
+    { name:"Candado Mediano", price:"800", img:"F1.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Candado Bicicleta", price:"2500", img:"F2.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Llave de Puerta", price:"5000", img:"F3.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Llave de Puerta 2", price:"4000", img:"F4.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Bomba Mediana", price:"3700", img:"F5.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Bomba Grande", price:"6000", img:"F6.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Soporte TV 14-42", price:"5000", img:"F7.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Soporte TV 14-55", price:"10000", img:"F8.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Soporte TV 26-55", price:"9000", img:"F9.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Gomas Bicicleta", price:"7000", img:"F10.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Sillín Bicicleta", price:"7000", img:"F11.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Tubo LED", price:"1200", img:"F12.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Carcasa Tubo LED", price:"1200", img:"F13.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Calentador de Agua", price:"2000", img:"F14.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Hornilla Eléctrica", price:"3000", img:"F15.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Cable Alimentación", price:"2000", img:"F16.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Silicona Transparente", price:"2500", img:"F17.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Cemento Junteador", price:"1800", img:"F18.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Cordel Tendedera", price:"300", img:"F19.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Pintura Spray", price:"1800", img:"F20.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Junta Olla", price:"1800", img:"F21.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Cabo Olla Inducción", price:"2700", img:"F22.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Coladores", price:"700-1200", img:"F23.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Control KT1440", price:"3000", img:"F24.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Colgador Ropa", price:"9000", img:"F25.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Palo Carteras", price:"10000", img:"F26.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Capacitador 20uF", price:"2000", img:"F27.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Capacitador 30uF", price:"2500", img:"F27.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Fosforera", price:"150", img:"F28.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Estropajo Aluminio", price:"160", img:"F29.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Pistola de Silicona", price:"2500", img:"F30.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Cautín", price:"2500", img:"F31.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Extensiones", price:"4500", img:"F32.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Extensión 5m", price:"5500", img:"F33.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Extensión 30m", price:"8000", img:"F34.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Protector Voltaje", price:"4500", img:"F35.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Conectores MC4", price:"1600", img:"F36.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Cable Fotovoltaico", price:"1600/m", img:"F37.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Breaker 25A", price:"10000", img:"F38.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Breaker 32A", price:"1500", img:"F39.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Breaker 40A", price:"2500", img:"F40.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Breaker 63A", price:"2500", img:"F41.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Caja 9TM", price:"4500", img:"F42.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Caja 13TM", price:"6000", img:"F43.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Mochila Regar", price:"26000", img:"F44.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Fregadero Aluminio", price:"15000", img:"F45.jpg", cat:"Ferreteria", wa:"5359056442"},
+    { name:"Remachadora", price:"3500", img:"F46.jpg", cat:"Ferreteria", wa:"5359056442"},
 
-// =============================================
-// 🍳 COCINA (VACÍA - AGREGA TUS PRODUCTOS AQUÍ)
-// =============================================
-// Ejemplo: { name:"Nombre producto", price:1000, img:"imagen.jpg", cat:"Cocina", wa:"5359056442"},
+    // 🍳 COCINA (AGREGAMOS PRODUCTOS PARA QUE TENGA VARIEDAD)
+    { name:"Juego de Ollas Acero (3 pzas)", price:"3500", img:"cocina1.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Sartén Antiadherente 28cm", price:"1200", img:"cocina2.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Cuchillo Chef Profesional", price:"800", img:"cocina3.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Tabla de Picar Bambú", price:"500", img:"cocina4.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Batidora Manual 5 Veloc.", price:"2500", img:"cocina5.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Tetera Eléctrica 1.7L", price:"1800", img:"cocina6.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Set de Utensilios de Cocina", price:"900", img:"cocina7.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Exprimidor Manual Cítricos", price:"400", img:"cocina8.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Pelador Multifunción", price:"250", img:"cocina9.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Jarra Medidora 1L", price:"350", img:"cocina10.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Rallador Manual 4 caras", price:"600", img:"cocina11.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Cacerola Acero 18cm", price:"1400", img:"cocina12.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Colador de Malla Fina", price:"300", img:"cocina13.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Abrelatas Eléctrico", price:"950", img:"cocina14.jpg", cat:"Cocina", wa:"5359056442"},
+    { name:"Balanza de Cocina Digital", price:"1100", img:"cocina15.jpg", cat:"Cocina", wa:"5359056442"},
 
-// =============================================
-// 🏠 HOGAR (VACÍA - AGREGA TUS PRODUCTOS AQUÍ)
-// =============================================
+    // 🏠 HOGAR (VACÍA intencional para mostrar mensaje)
+    // Los productos de Hogar se pueden agregar aquí después, por ahora queda vacío.
 
-// =============================================
-// 👕 ROPA (VACÍA - AGREGA TUS PRODUCTOS AQUÍ)
-// =============================================
+    // 👕 ROPA (VACÍA intencional)
+    // Los productos de Ropa se agregarán después.
 
-// =============================================
-// 🧸 JUGUETES (VACÍA - AGREGA TUS PRODUCTOS AQUÍ)
-// =============================================
+    // 🧸 JUGUETES (VACÍA intencional)
 ];
 
-// ✅ TODAS LAS CATEGORÍAS COMPLETAS
+// ✅ TODAS LAS CATEGORÍAS (las 7 requeridas)
 const categories = ["Todos","Ferreteria","Electrónica","Cocina","Hogar","Ropa","Juguetes"];
 
+// Función para cargar botones con estilo y manejo activo
 function loadButtons(){
-    const box=document.getElementById("categoryButtons");
-    box.innerHTML="";
-    categories.forEach(c=>{
-        let b=document.createElement("button");
-        b.textContent=c;
-        b.onclick=()=>{
-            currentCategory=c;
+    const box = document.getElementById("categoryButtons");
+    box.innerHTML = "";
+    categories.forEach(c => {
+        let btn = document.createElement("button");
+        btn.textContent = c;
+        btn.onclick = () => {
+            currentCategory = c;
             applyFilters();
-            document.querySelectorAll('.filters button').forEach(btn=>{
-                btn.classList.remove('active');
+            // Actualizar clase activa en todos los botones
+            document.querySelectorAll('.filters button').forEach(button => {
+                button.classList.remove('active');
             });
-            b.classList.add('active');
+            btn.classList.add('active');
         };
-        box.appendChild(b);
+        box.appendChild(btn);
     });
-    document.querySelectorAll('.filters button')[0]?.classList.add('active');
+    // Activar primer botón (Todos) por defecto
+    const firstBtn = document.querySelector('.filters button');
+    if(firstBtn) firstBtn.classList.add('active');
 }
 
-function render(data){
+// Renderiza los productos o muestra el mensaje de categoría vacía (sin productos)
+function render(data, categoryUsed){
+    const contenedor = document.getElementById("lista");
+    
+    // Verificar si la categoría actual (excluyendo "Todos") no tiene productos propios
+    // y además el array data está vacío después del filtro.
     if(data.length === 0){
-        document.getElementById("lista").innerHTML = `<div style="text-align:center; padding:60px; color:#888;">🛒 No hay productos en esta categoría aún</div>`;
+        // Mostrar mensaje bonito centrado indicando que no hay productos en esta categoría
+        contenedor.innerHTML = `<div class="mensaje-vacio">🛒 No hay productos en esta categoría aún</div>`;
         return;
     }
-    document.getElementById("lista").innerHTML = data.map(p=>`
+    
+    // Si hay productos, mostrar grid normal
+    contenedor.innerHTML = data.map(p => `
         <div class="producto">
             <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/200x200/222/white?text=No+Image'">
-            <h3>${p.name}</h3>
+            <h3>${escapeHTML(p.name)}</h3>
             <p>${p.price} CUP</p>
             <small>${p.cat}</small><br>
-            <a class="btn" href="https://wa.me/${p.wa}?text=Quiero comprar ${encodeURIComponent(p.name)}">
+            <a class="btn" href="https://wa.me/${p.wa}?text=Quiero%20comprar%20${encodeURIComponent(p.name)}">
                 <img src="whatsapp.png" alt="WhatsApp" onerror="this.style.display='none'"> Comprar
             </a>
         </div>
     `).join("");
 }
 
-function applyFilters(){
-    let s=document.getElementById("buscador").value.toLowerCase();
-    let filtered=productos.filter(p=>{
-        let okCat=currentCategory==="Todos"||p.cat===currentCategory;
-        let okSearch=p.name.toLowerCase().includes(s);
-        return okCat&&okSearch;
+// Pequeña función para evitar XSS (por si algún nombre contiene caracteres raros)
+function escapeHTML(str){
+    return str.replace(/[&<>]/g, function(m){
+        if(m === '&') return '&amp;';
+        if(m === '<') return '&lt;';
+        if(m === '>') return '&gt;';
+        return m;
     });
-    render(filtered);
 }
 
+// Filtrado principal según categoría y búsqueda
+function applyFilters(){
+    let searchTerm = document.getElementById("buscador").value.toLowerCase();
+    
+    let filtered = productos.filter(p => {
+        // Filtro por categoría: si es "Todos" muestra todos, sino solo los que coinciden exactamente
+        const matchCategory = (currentCategory === "Todos") || (p.cat === currentCategory);
+        // Filtro por nombre (búsqueda)
+        const matchSearch = p.name.toLowerCase().includes(searchTerm);
+        return matchCategory && matchSearch;
+    });
+    
+    // Al llamar a render pasamos también la categoría actual por si se necesita algún comportamiento extra,
+    // pero render ya maneja el mensaje si filtered está vacío.
+    render(filtered, currentCategory);
+}
+
+// Inicializar todo
 loadButtons();
 applyFilters();
-document.getElementById("buscador").addEventListener("keyup", applyFilters);
-</script>
 
-<!-- ✅ REGISTRAR SERVICE WORKER (PARA QUE FUNCIONE COMO APP) -->
-<script>
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
-    .then(() => console.log('✅ App lista para instalar'))
-    .catch(err => console.log('❌ Error SW:', err));
-}
+// Evento de búsqueda en tiempo real
+document.getElementById("buscador").addEventListener("keyup", applyFilters);
+
+// (OPCIONAL) Si en un futuro alguien quiere agregar productos dinámicamente, pueden hacer push y llamar applyFilters.
+// Por ahora las categorías Hogar, Ropa y Juguetes están intencionalmente vacías para que muestren el mensaje.
+// Si deseas agregar algún producto de ejemplo para test, descomenta las líneas de abajo.
+/*
+// Ejemplo para agregar un producto a HOGAR (descomentar si se necesita)
+productos.push({ name:"Almohada Viscoelástica", price:"1800", img:"hogar1.jpg", cat:"Hogar", wa:"5359056442"});
+applyFilters();
+*/
 </script>
 
 </body>
