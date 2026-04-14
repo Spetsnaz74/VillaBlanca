@@ -2,326 +2,435 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ofertas en Remedios🛒🔥</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Ofertas en Remedios | Catálogo Completo 🛒🔥</title>
 
-<!-- FUENTE INTER PROFESIONAL -->
+<!-- FUENTE INTER -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family: 'Inter', sans-serif;
-    background:#111;
-    color:white;
-}
-
-h1{
-    text-align:center;
-    padding:40px 0;
-    background: url("Ventas.jpg") center/cover no-repeat;
-    text-shadow:2px 2px 4px #000;
-    font-size: 28px;
-    letter-spacing: -0.5px;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.search{
-    display:flex;
-    justify-content:center;
-    padding:20px 10px;
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #f0f0f0;
 }
 
-.search input{
-    padding:12px 15px;
-    width:260px;
-    border-radius:30px;
-    border:none;
-    font-size: 14px;
+h1 {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url("Ventas.jpg") center/cover no-repeat;
+    text-shadow: 3px 3px 6px #000;
+    font-size: clamp(24px, 6vw, 36px);
+    font-weight: 800;
+    border-bottom: 2px solid #ff9800;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    padding: 28px 16px 20px;
+}
+
+.search input {
+    padding: 14px 20px;
+    width: 340px;
+    max-width: 85%;
+    border-radius: 60px;
+    border: none;
+    background: #1e1e1e;
+    color: white;
+    font-size: 15px;
     font-family: 'Inter', sans-serif;
     outline: none;
+    border: 1px solid #333;
+    transition: all 0.2s;
 }
 
-.filters{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-    padding:10px;
+.search input:focus {
+    border-color: #ff9800;
+    background: #252525;
 }
 
-.filters button{
-    padding:8px 16px;
-    border:none;
-    border-radius:30px;
-    background:#222;
-    color:white;
-    cursor:pointer;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    transition:0.2s;
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 8px 16px 20px;
 }
 
-.filters button:hover{
-    background:#333;
-    transform:scale(1.02);
-}
-
-.filters button.active{
-    background:#ff9800;
-    color:#111;
-    font-weight: 600;
-}
-
-.productos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-    gap:20px;
-    padding:20px;
-    max-width:1400px;
-    margin:0 auto;
-}
-
-.producto{
-    background:#1a1a1a;
-    padding:12px;
-    border-radius:12px;
-    text-align:center;
-    transition:0.3s;
-    border:1px solid #2a2a2a;
-}
-
-.producto:hover{
-    transform:translateY(-5px);
-    border-color:#ff9800;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-
-.producto img{
-    width:100%;
-    height:200px;
-    object-fit:contain;
-    background:#111;
-    border-radius:8px;
-    transition:0.3s;
-}
-
-.producto:hover img{
-    transform:scale(1.05);
-}
-
-.producto h3{
+.filters button {
+    padding: 9px 22px;
+    border: none;
+    border-radius: 40px;
+    background: #1f1f1f;
+    color: #e0e0e0;
+    cursor: pointer;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 15px;
-    margin: 12px 0 5px;
-    color: #fff;
-    line-height: 1.3;
-    min-height: 38px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 14px;
+    transition: 0.2s;
 }
 
-.producto p{
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
+.filters button:hover {
+    background: #2d2d2d;
+    transform: translateY(-2px);
+}
+
+.filters button.active {
+    background: #ff9800;
+    color: #0a0a0a;
     font-weight: 700;
-    color: #ff9800;
-    margin: 5px 0;
-    background: rgba(255,152,0,0.1);
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(255,152,0,0.3);
 }
 
-.producto small{
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+    padding: 20px 24px 40px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.producto {
+    background: #151515;
+    padding: 16px 14px 18px;
+    border-radius: 24px;
+    text-align: center;
+    transition: all 0.25s ease;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto:hover {
+    transform: translateY(-6px);
+    border-color: #ff9800;
+    box-shadow: 0 18px 30px -12px rgba(0,0,0,0.6);
+}
+
+.producto img {
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    background: #0c0c0c;
+    border-radius: 18px;
+    padding: 6px;
+    transition: transform 0.2s;
+}
+
+.producto:hover img {
+    transform: scale(1.02);
+}
+
+.producto h3 {
+    font-weight: 700;
+    font-size: 16px;
+    margin: 14px 0 6px;
+    color: #fff;
+    line-height: 1.35;
+    min-height: 44px;
+}
+
+.producto p {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffb347;
+    background: rgba(255,152,0,0.12);
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 40px;
+    margin: 8px auto 6px;
+}
+
+.producto small {
+    font-size: 11px;
+    font-weight: 600;
     color: #aaa;
-    background: #2a2a2a;
-    padding: 4px 12px;
-    border-radius: 30px;
+    background: #262626;
+    padding: 5px 12px;
+    border-radius: 40px;
     display: inline-block;
-    margin: 8px 0 5px;
-    letter-spacing: 0.3px;
+    margin: 8px 0 8px;
+    text-transform: uppercase;
 }
 
-.btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    margin-top:10px;
-    padding:10px 12px;
-    background:#25D366;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-family: 'Inter', sans-serif;
-    font-size:13px;
-    font-weight:600;
-    transition:0.2s;
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 11px 12px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 60px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s;
 }
 
-.btn:hover{
-    transform:scale(1.02);
-    background:#20b859;
+.btn:hover {
+    transform: scale(1.02);
+    background: #1ebc5a;
 }
 
-.btn img{
-    width:18px;
-    height:18px;
-    background: transparent;
-    mix-blend-mode: screen;
+.btn img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
 }
 
-@media (max-width: 480px){
-    .productos{
-        gap:12px;
-        padding:12px;
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    color: #aaa;
+}
+
+@media (max-width: 560px) {
+    .productos {
+        gap: 16px;
+        padding: 16px;
     }
-    .producto h3{
-        font-size: 13px;
+    .producto h3 {
+        font-size: 14px;
     }
-    .producto p{
-        font-size: 18px;
+    .btn {
+        font-size: 12px;
     }
 }
 </style>
 </head>
-
 <body>
 
 <h1>🛒 Ofertas en Remedios 🔥</h1>
 
 <div class="search">
-<input type="text" id="buscador" placeholder="🔍 Buscar producto...">
+    <input type="text" id="buscador" placeholder="🔍 Buscar producto...">
 </div>
 
 <div class="filters" id="categoryButtons"></div>
 <div class="productos" id="lista"></div>
 
 <script>
-
-let currentCategory = "Todos";
+// ==================== CATÁLOGO COMPLETO ====================
+// Productos originales (Electrónica + Ferretería) + los 72 nuevos (Juguetes, Ropa, Hogar)
 
 let productos = [
-// Electrónica
-{ name:"Cable adaptador Molex a SATA", price:300, img:"imagen1.png", cat:"Electrónica", wa:"5359056442"},
-{ name:"Cable SATA III", price:300, img:"imagen2.png", cat:"Electrónica", wa:"5359056442"},
+    // === Electrónica ===
+    { name: "Cable adaptador Molex a SATA", price: 300, img: "imagen1.png", cat: "Electrónica", wa: "5359056442" },
+    { name: "Cable SATA III", price: 300, img: "imagen2.png", cat: "Electrónica", wa: "5359056442" },
+    
+    // === Ferretería ===
+    { name: "Candado Mediano", price: 800, img: "F1.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Candado Bicicleta", price: 2500, img: "F2.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Llave de Puerta", price: 5000, img: "F3.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Llave de Puerta 2", price: 4000, img: "F4.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Bomba Mediana", price: 3700, img: "F5.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Bomba Grande", price: 6000, img: "F6.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Soporte TV 14-42", price: 5000, img: "F7.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Soporte TV 14-55", price: 10000, img: "F8.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Soporte TV 26-55", price: 9000, img: "F9.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Gomas Bicicleta", price: 7000, img: "F10.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Sillín Bicicleta", price: 7000, img: "F11.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Tubo LED", price: 1200, img: "F12.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Carcasa Tubo LED", price: 1200, img: "F13.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Calentador de Agua", price: 2000, img: "F14.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Hornilla Eléctrica", price: 3000, img: "F15.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Cable Alimentación", price: 2000, img: "F16.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Silicona Transparente", price: 2500, img: "F17.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Cemento Junteador", price: 1800, img: "F18.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Cordel Tendedera", price: 300, img: "F19.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Pintura Spray", price: 1800, img: "F20.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Junta Olla", price: 1800, img: "F21.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Cabo Olla Inducción", price: 2700, img: "F22.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Coladores", price: "700-1200", img: "F23.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Control KT1440", price: 3000, img: "F24.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Colgador Ropa", price: 9000, img: "F25.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Palo Carteras", price: 10000, img: "F26.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Capacitador 20uF", price: 2000, img: "F27.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Capacitador 30uF", price: 2500, img: "F27.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Fosforera", price: 150, img: "F28.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Estropajo Aluminio", price: 160, img: "F29.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Pistola de Silicona", price: 2500, img: "F30.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Cautín", price: 2500, img: "F31.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Extensiones", price: 4500, img: "F32.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Extensión 5m", price: 5500, img: "F33.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Extensión 30m", price: 8000, img: "F34.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Protector Voltaje", price: 4500, img: "F35.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Conectores MC4", price: 1600, img: "F36.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Cable Fotovoltaico", price: "1600/m", img: "F37.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Breaker 25A", price: 10000, img: "F38.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Breaker 32A", price: 1500, img: "F39.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Breaker 40A", price: 2500, img: "F40.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Breaker 63A", price: 2500, img: "F41.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Caja 9TM", price: 4500, img: "F42.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Caja 13TM", price: 6000, img: "F43.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Mochila Regar", price: 26000, img: "F44.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Fregadero Aluminio", price: 15000, img: "F45.jpg", cat: "Ferreteria", wa: "5359056442" },
+    { name: "Remachadora", price: 3500, img: "F46.jpg", cat: "Ferreteria", wa: "5359056442" },
 
-// Ferreteria
-{ name:"Candado Mediano", price:800, img:"F1.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Candado Bicicleta", price:2500, img:"F2.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Llave de Puerta", price:5000, img:"F3.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Llave de Puerta 2", price:4000, img:"F4.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Bomba Mediana", price:3700, img:"F5.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Bomba Grande", price:6000, img:"F6.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Soporte TV 14-42", price:5000, img:"F7.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Soporte TV 14-55", price:10000, img:"F8.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Soporte TV 26-55", price:9000, img:"F9.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Gomas Bicicleta", price:7000, img:"F10.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Sillín Bicicleta", price:7000, img:"F11.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Tubo LED", price:1200, img:"F12.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Carcasa Tubo LED", price:1200, img:"F13.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Calentador de Agua", price:2000, img:"F14.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Hornilla Eléctrica", price:3000, img:"F15.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cable Alimentación", price:2000, img:"F16.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Silicona Transparente", price:2500, img:"F17.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cemento Junteador", price:1800, img:"F18.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cordel Tendedera", price:300, img:"F19.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Pintura Spray", price:1800, img:"F20.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Junta Olla", price:1800, img:"F21.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cabo Olla Inducción", price:2700, img:"F22.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Coladores", price:"700-1200", img:"F23.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Control KT1440", price:3000, img:"F24.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Colgador Ropa", price:9000, img:"F25.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Palo Carteras", price:10000, img:"F26.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Capacitador 20uF", price:2000, img:"F27.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Capacitador 30uF", price:2500, img:"F27.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Fosforera", price:150, img:"F28.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Estropajo Aluminio", price:160, img:"F29.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Pistola de Silicona", price:2500, img:"F30.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cautín", price:2500, img:"F31.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Extensiones", price:4500, img:"F32.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Extensión 5m", price:5500, img:"F33.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Extensión 30m", price:8000, img:"F34.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Protector Voltaje", price:4500, img:"F35.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Conectores MC4", price:1600, img:"F36.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Cable Fotovoltaico", price:"1600/m", img:"F37.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 25A", price:10000, img:"F38.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 32A", price:1500, img:"F39.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 40A", price:2500, img:"F40.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Breaker 63A", price:2500, img:"F41.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Caja 9TM", price:4500, img:"F42.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Caja 13TM", price:6000, img:"F43.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Mochila Regar", price:26000, img:"F44.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Fregadero Aluminio", price:15000, img:"F45.jpg", cat:"Ferreteria", wa:"5359056442"},
-{ name:"Remachadora", price:3500, img:"F46.jpg", cat:"Ferreteria", wa:"5359056442"}
+    // ========== NUEVOS PRODUCTOS: JUGUETES, ROPA, HOGAR ==========
+    { name: "2 Pal de Revolver", price: "2500", img: "F52.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Pizzara de juguete", price: "3500", img: "F53.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Avion de Juguete", price: "4800", img: "F54.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Muñeca con set de cocina", price: "2500", img: "F55.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Pistola de Agua", price: "2500", img: "F56.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Carros de Juguete", price: "4000", img: "F58.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Auto de Carrera X-KNIGHT", price: "10.000", img: "F59.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Auto transforme", price: "6500", img: "F60.jpg", cat: "Juguetes", wa: "5359056442" },
+    { name: "Ajustador de Mujer", price: "2500", img: "F61.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Blumer de Niñas", price: "700", img: "F62.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Blumer de Mujer", price: "800", img: "F63.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Short de Niña", price: "2000", img: "F65.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Calzoncillo de Niño", price: "650", img: "F66.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Calzoncillo de Hombre", price: "750", img: "F67.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Boxer de Faja", price: "1700", img: "F68.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Colcha de Tapar", price: "8000", img: "F69.jpg", cat: "Ropa", wa: "5359056442" },
+    { name: "Desodorante Garnier OBAO", price: "1350", img: "H1.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Desodorante Sanex", price: "750", img: "H2.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Gel de Hombre EGO", price: "1800", img: "H3.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Colonias Bonabel", price: "1800", img: "H4.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Perlas de Olor", price: "4000", img: "H5.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Polvo Decolorante para cabello", price: "3000", img: "H6.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Maquinas de Afeitar", price: "120", img: "H7.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Toallas Humedas Faciales", price: "1250", img: "H8.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Pack de Intimas(10Unidades)", price: "700", img: "H9.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Pañales de Adultos", price: "4000", img: "H10.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Detergente Liquido 2L", price: "2200", img: "H11.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Esponjas de Fregar", price: "150", img: "H12.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Juegos de Tazas de Cafe de 6 Unidades", price: "5000", img: "H14.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Juegos de Vasos de 6 Unidades(F)", price: "2500", img: "H15.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Jarras de Cristal con Absorvente", price: "3000", img: "H16.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Pomo de Agua Grande", price: "3000", img: "H17.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Pomos de Lleche", price: "1500", img: "H18.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Juegos de Dulcera", price: "7000", img: "H19.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Platos Hondos de Flores", price: "850", img: "H20.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Cepillero", price: "3000", img: "H21.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Juegos de Cubiertos de 24 Unidades", price: "8000", img: "H22.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Espumeros Café Frances", price: "4000", img: "H23.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Cafetera Moka de 2 Tazas", price: "4500", img: "H25.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Cafetera de 3 Tazas", price: "6000", img: "H26.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Cafetera de 3 Tazas", price: "4000", img: "H27.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Cafetera de 6 Tazas D Induccion", price: "5000", img: "H28.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Cafetera de 6 Tazas de Colores", price: "7000", img: "H29.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Molino de Cafe electrico", price: "8000", img: "H30.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Sarten de 20cm", price: "8000", img: "H31.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Sarten de 22cm", price: "8000", img: "H31.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Sarten de 24cm", price: "8500", img: "H31.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Juego de Calderos 6Unidades(M:MARWA)", price: "26500", img: "H32.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Sarten Electrico (M:UNIZUKI)", price: "17500", img: "H33.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Sarten Electrico 10 en 1(M:MARWA) 8L", price: "32000", img: "H34.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Fogon de Bitroceramica", price: "22000", img: "H36.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Olla de Presión con Inducción (M:Universal Royal)", price: "15000", img: "H37.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Batidora Multifunción(M:MARWA)", price: "25500", img: "H40.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Batidora Vaso de Cristal(M:UNIZUKI)", price: "19000", img: "H41.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Tostadora de Pan", price: "14500", img: "H42.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Maquina de Moler Carne", price: "15500", img: "H43.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Fogon de Gas Hornilla de Cristal", price: "12500", img: "H44.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Fogon de Gas 2 Hornilla de Metal", price: "15000", img: "H45.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Fogon de Keroseno", price: "15500", img: "H46.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Freidora de Aceite 4.5 Litros", price: "22000", img: "H47.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Kit de Depilacion", price: "16000", img: "H48.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Set de Utensilios de Silicona", price: "3000", img: "H49.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Organizador de 5 Divisiones", price: "3500", img: "H50.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Escurridor de Metal", price: "12500", img: "H51.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Escurridor de Acero inoxidable", price: "16000", img: "H52.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Colgadera de Caritas", price: "2000", img: "H54.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Tendedera de Orquillas", price: "3000", img: "H55.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Sombrillas", price: "3500", img: "H59.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Juego de Alfombras de Baño", price: "7000", img: "H58.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Saborizante D Vainilla", price: "2000", img: "H63.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Mochila de Mujer", price: "10500", img: "H62.jpg", cat: "Hogar", wa: "5359056442" },
+    { name: "Espejo con Luces LED 60CM", price: "26500", img: "H64.JPG", cat: "Hogar", wa: "5359056442" }
 ];
 
-// SOLO LAS CATEGORÍAS QUE EXISTEN (Ferreteria y Electrónica)
-const categories = ["Todos","Ferreteria","Electrónica"];
+// ========== GENERAR CATEGORÍAS AUTOMÁTICAMENTE ==========
+function getUniqueCategories() {
+    let catsSet = new Set();
+    productos.forEach(p => catsSet.add(p.cat));
+    let sorted = Array.from(catsSet).sort();
+    return ["Todos", ...sorted];
+}
 
-function loadButtons(){
-    const box=document.getElementById("categoryButtons");
-    box.innerHTML="";
-    categories.forEach(c=>{
-        let b=document.createElement("button");
-        b.textContent=c;
-        b.onclick=()=>{
-            currentCategory=c;
+let currentCategory = "Todos";
+let categoriesList = getUniqueCategories();
+
+function loadButtons() {
+    const box = document.getElementById("categoryButtons");
+    box.innerHTML = "";
+    categoriesList.forEach(cat => {
+        let btn = document.createElement("button");
+        btn.textContent = cat;
+        btn.onclick = () => {
+            currentCategory = cat;
             applyFilters();
-            document.querySelectorAll('.filters button').forEach(btn=>{
-                btn.classList.remove('active');
-            });
-            b.classList.add('active');
+            document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         };
-        box.appendChild(b);
+        box.appendChild(btn);
     });
-    document.querySelectorAll('.filters button')[0]?.classList.add('active');
+    document.querySelector('.filters button')?.classList.add('active');
 }
 
-function render(data){
-    document.getElementById("lista").innerHTML = data.map(p=>`
-        <div class="producto">
-            <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/200x200/222/white?text=No+Image'">
-            <h3>${p.name}</h3>
-            <p>${p.price} CUP</p>
-            <small>${p.cat}</small><br>
-            <a class="btn" href="https://wa.me/${p.wa}?text=Quiero comprar ${encodeURIComponent(p.name)}">
-                <img src="whatsapp.png" alt="WhatsApp" onerror="this.style.display='none'"> Comprar
-            </a>
-        </div>
-    `).join("");
+function escapeHtml(str) {
+    if (!str) return "";
+    return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+    });
 }
 
-function applyFilters(){
-    let s=document.getElementById("buscador").value.toLowerCase();
+function render(productArray) {
+    const container = document.getElementById("lista");
+    if (!productArray.length) {
+        container.innerHTML = `<div class="no-results">🔍 No encontramos productos. Intenta con otra búsqueda o categoría.</div>`;
+        return;
+    }
+    container.innerHTML = productArray.map(p => {
+        let priceDisplay = typeof p.price === 'number' ? p.price + " CUP" : p.price + " CUP";
+        let waMsg = `Quiero comprar ${p.name} (${priceDisplay})`;
+        return `
+            <div class="producto">
+                <img src="${p.img}" alt="${escapeHtml(p.name)}" onerror="this.onerror=null;this.src='https://placehold.co/300x220/222/ff9800?text=${encodeURIComponent(p.name.substring(0,18))}'">
+                <h3>${escapeHtml(p.name)}</h3>
+                <p>${escapeHtml(priceDisplay)}</p>
+                <small>${escapeHtml(p.cat)}</small>
+                <a class="btn" href="https://wa.me/${p.wa}?text=${encodeURIComponent(waMsg)}" target="_blank">
+                    <img src="whatsapp.png" alt="WhatsApp" onerror="this.style.display='none'"> Comprar
+                </a>
+            </div>
+        `;
+    }).join("");
+}
 
-    let filtered=productos.filter(p=>{
-        let okCat=currentCategory==="Todos"||p.cat===currentCategory;
-        let okSearch=p.name.toLowerCase().includes(s);
-        return okCat&&okSearch;
+function applyFilters() {
+    let searchTerm = document.getElementById("buscador").value.toLowerCase().trim();
+    let filtered = productos.filter(p => {
+        let catMatch = currentCategory === "Todos" || p.cat === currentCategory;
+        let nameMatch = p.name.toLowerCase().includes(searchTerm);
+        return catMatch && nameMatch;
     });
-
     render(filtered);
 }
 
-loadButtons();
-applyFilters();
-document.getElementById("buscador").addEventListener("keyup", applyFilters);
-
+document.addEventListener("DOMContentLoaded", () => {
+    loadButtons();
+    applyFilters();
+    document.getElementById("buscador").addEventListener("keyup", applyFilters);
+});
 </script>
-
 </body>
 </html>
